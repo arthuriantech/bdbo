@@ -143,7 +143,7 @@ class Db(object):
         self.keydump, self.keyload = lexpacker()
         self.capsule = lambda x: x
 
-        self.slicecursor = types.MethodType(DbSliceCursor, self)
+        self.slicecursor = types.MethodType(DbRangeCursor, self)
 
     def open(self, filename, dbname=None, dbtype=DB_UNKNOWN, flags=0, mode=0o660, txn=None):
         self._cobj.open(filename, dbname, dbtype, flags, mode, txn)
