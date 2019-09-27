@@ -144,7 +144,7 @@ class Db(object):
         self.datadump, self.dataload = marshal.dumps, marshal.loads
         self.capsule = lambda x: x
 
-        self.slicecursor = types.MethodType(DbRangeCursor, self)
+        self.rangecursor = types.MethodType(DbRangeCursor, self)
 
     def open(self, filename, dbname=None, dbtype=DB_UNKNOWN, flags=0, mode=0o660, txn=None):
         self._cobj.open(filename, dbname, dbtype, flags, mode, txn)
