@@ -127,11 +127,11 @@ class DbEnv(object):
 
 
 class Db(object):
-    from json import dumps as datadump
-    from json import loads as dataload
     static_list = []
     
     def __init__(self, dbenv=None, flags=0):
+        import marshal
+
         if isinstance(dbenv, DbEnv):
             self._cobj = cDB(dbenv._cobj, flags)
         else:
@@ -141,6 +141,7 @@ class Db(object):
         
         self.dbenv = dbenv
         self.keydump, self.keyload = lexpacker()
+        self.datadump, self.dataload = marshal.dumps, marshal.loads
         self.capsule = lambda x: x
 
         self.slicecursor = types.MethodType(DbRangeCursor, self)
