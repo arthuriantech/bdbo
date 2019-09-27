@@ -114,9 +114,16 @@ class DbExJoinMixin:
             self.exjoin_db = dbs
             self.exjoin_keys_callback = callback
 
-            if not len(dbs) and (flags & DB_CREATE):
+            cursor = dbs._cobj.cursor(txn=txn)
+
+            try:
+                empty = not cursor.first()
+            finally:
+                cursor.close()
+
+            if empty and (flags & DB_CREATE):
                 self.exjoin_create(dbs, txn)
-            
+
             return callback
 
         return decorator
