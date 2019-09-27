@@ -156,18 +156,6 @@ class Db(object):
         self.capsule = class_or_callable
         return self.capsule
 
-    def __len__(self):
-        return len(self._cobj)
-
-    def __getitem__(self, arg):
-        return self._cobj[arg]
-
-    def __setitem__(self, key, value):
-        self._cobj[key] = value
-    
-    def __delitem__(self, arg):
-        del self._cobj[arg]
-
     def append(self, *args, **kwargs):
         return self._cobj.append(*args, **kwargs)
     
@@ -211,9 +199,6 @@ class Db(object):
     def cursor(self, txn=None, flags=0):
         return self._cobj.cursor(txn, flags)
     
-    def has_key(self, *args, **kwargs):
-        return self._cobj.has_key(*args, **kwargs)
-    
     def key_range(self, *args, **kwargs):
         return self._cobj.key_range(*args, **kwargs)
     
@@ -252,9 +237,6 @@ class Db(object):
 
     def get_type(self, *args, **kwargs):
         return self._cobj.get_type(*args, **kwargs)
-
-    def items(self, *args, **kwargs):
-        return self._cobj.items(*args, **kwargs)
 
     def remove(self, *args, **kwargs):
         return self._cobj.remove(*args, **kwargs)
