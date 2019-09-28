@@ -19,7 +19,8 @@ __all__ = [
 
 
 class DbEnv(object):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, registry=False, **kwargs):
+        self._registry = registry
         self._cobj = cDBEnv(*args, **kwargs)
         register_close_handler(self._cobj.close)
 
@@ -219,7 +220,13 @@ class DbEnv(object):
         if not self.get_intermediate_dir_mode():
             self.set_intermediate_dir_mode('rwx------')
 
-        return self._cobj.open(*args, **kwargs)
+        self._cobj.open(*args, **kwargs)
+
+        if self._registry:
+            self.registry_db = Db(self)
+            self.registry_db.open('_registry.db', None, DB_BTREE, DB_CREATE, 0)
+        else:
+            self.registry_db = None
 
     def remove(self, *args, **kwargs):
         return self._cobj.remove(*args, **kwargs)
