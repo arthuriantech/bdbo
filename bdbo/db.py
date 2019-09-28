@@ -1,4 +1,5 @@
 import types
+import contextlib
 
 from bsddb3.db import *
 
@@ -450,6 +451,9 @@ class Db(object):
         if dbtype in (DB_RECNO, DB_QUEUE):
             self.keydump = int
 
+        if self.dbenv:
+            self.registry_db = self.dbenv.registry_db
+
     def encapsulate(self, class_or_callable):
         self.capsule = class_or_callable
         return self.capsule
@@ -457,7 +461,7 @@ class Db(object):
     def append(self, *args, **kwargs):
         return self._cobj.append(*args, **kwargs)
     
-    def associate(self, secdb, flags=0, txn=None):
+    def associate(self, secdb, flags=0, txn=None, version=0):
         def decorator(callback):
             def wrapper(rkey, rdata):
                 skeys = []
@@ -467,10 +471,41 @@ class Db(object):
 
                 return skeys
             
-            self._cobj.associate(secdb._cobj, wrapper, flags, txn)
+            with secdb.associate_control(version, txn) as diff:
+                if diff > 0 and flags & DB_CREATE:
+                    print('1Secondary database will be created.')
+                    secdb.truncate(txn)
+
+                self._cobj.associate(secdb._cobj, wrapper, flags, txn)
+
+            return callback
 
         return decorator
-    
+
+    @contextlib.contextmanager
+    def associate_control(self, version, txn=None):
+        filename, database = self.get_dbname()
+
+        if (not filename) or (not version) or (not self.registry_db):
+            yield 0
+            return
+
+        key = ['version', filename, database or '', 'callback']
+        record = self.registry_db.get(key, txn=txn) or {}
+        storedversion = record.get('version') or version
+        diff = version - storedversion
+
+        if diff < 0:
+            print('Previous callback version ahead of current by', -diff)
+
+        if diff > 0:
+            print('Current callback version ahead of previous by', diff)
+
+        yield diff
+
+        record['version'] = version
+        self.registry_db.put(key, record, txn=txn)
+
     def get(self, key, default=None, txn=None, flags=0, dlen=-1, doff=-1):
         rkey = self.keydump(key)
         rdata = self._cobj.get(rkey, default, txn, flags, dlen, doff)

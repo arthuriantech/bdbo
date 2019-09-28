@@ -2,7 +2,7 @@
 
 from types import MethodType
 from itertools import product
-from bsddb3.db import *
+from bdbo.db import *
 
 
 def eqjkeys(keys, **sorts):
@@ -101,28 +101,30 @@ class DbExJoinMixin:
         'By default'
         return []
     
-    def exjoin_associate(self, dbs, flags=0, txn=None):
+    def exjoin_associate(self, secdb, flags=0, txn=None, version=0):
         if self.get_flags() & (DB_DUP | DB_DUPSORT):
             msg = 'Primary databases may not be configured with duplicates'
             raise RuntimeError(msg)
         
-        if not (self.get_transactional() and dbs.get_transactional()):
+        if not (self.get_transactional() and secdb.get_transactional()):
             msg = 'Databases with DbExJoinMixin must be transactional'
             raise RuntimeError(msg)
         
         def decorator(callback):
-            self.exjoin_db = dbs
+            self.exjoin_db = secdb
             self.exjoin_keys_callback = callback
 
-            cursor = dbs._cobj.cursor(txn=txn)
+            cursor = secdb._cobj.cursor(txn=txn)
 
             try:
                 empty = not cursor.first()
             finally:
                 cursor.close()
 
-            if empty and (flags & DB_CREATE):
-                self.exjoin_create(dbs, txn)
+            with secdb.associate_control(version, txn) as diff:
+                if (empty or diff > 0) and flags & DB_CREATE:
+                    secdb.truncate()
+                    self.exjoin_create(secdb, txn)
 
             return callback
 
