@@ -216,6 +216,9 @@ class DbEnv(object):
         return self._cobj.mutex_stat_print(*args, **kwargs)
 
     def open(self, *args, **kwargs):
+        if not self.get_intermediate_dir_mode():
+            self.set_intermediate_dir_mode('rwx------')
+
         return self._cobj.open(*args, **kwargs)
 
     def remove(self, *args, **kwargs):
