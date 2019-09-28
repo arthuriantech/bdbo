@@ -238,6 +238,9 @@ class Db(object):
     def get_type(self, *args, **kwargs):
         return self._cobj.get_type(*args, **kwargs)
 
+    def get_dbname(self, *args, **kwargs):
+        return self._cobj.get_dbname(*args, **kwargs)
+
     def remove(self, *args, **kwargs):
         return self._cobj.remove(*args, **kwargs)
 
