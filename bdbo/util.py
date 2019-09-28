@@ -41,8 +41,8 @@ def lexpacker(tag_str=b'K', tag_bytes=b'P', tag_nint=b'U', tag_pint=b'V'):
     dump64 = Struct('>q').pack
     load64 = Struct('>q').unpack
     
-    def lexdump(key):
-        result = []
+    def lexdump(key, result=None):
+        result = result if result is not None else []
         
         if not isinstance(key, list):
             key = [key]
@@ -59,6 +59,9 @@ def lexpacker(tag_str=b'K', tag_bytes=b'P', tag_nint=b'U', tag_pint=b'V'):
 
             elif isinstance(k, bytes):
                 result.append(tag_bytes + hexlify(k))
+
+            elif isinstance(k, list):
+                lexdump(k, result)
 
             else:
                 raise TypeError("%r not supported" % type(k))
