@@ -1,4 +1,5 @@
 import types
+import json
 import contextlib
 
 from bsddb3.db import *
@@ -426,11 +427,10 @@ class DbEnv(object):
 
 
 class Db(object):
+    default_serializer = (json.dumps, json.loads)
     static_list = []
     
     def __init__(self, dbenv=None, flags=0):
-        import marshal
-
         if isinstance(dbenv, DbEnv):
             self._cobj = cDB(dbenv._cobj, flags)
         else:
@@ -439,9 +439,9 @@ class Db(object):
         register_close_handler(self._cobj.close)
         
         self.dbenv = dbenv
-        self.keydump, self.keyload = lexpacker()
-        self.datadump, self.dataload = marshal.dumps, marshal.loads
         self.capsule = lambda x: x
+        self.keydump, self.keyload = lexpacker()
+        self.datadump, self.dataload = self.default_serializer
 
         self.rangecursor = types.MethodType(DbRangeCursor, self)
 
