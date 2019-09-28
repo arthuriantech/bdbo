@@ -25,69 +25,102 @@ class DbEnv(object):
 
     def close(self, *args, **kwargs):
         return self._cobj.close(*args, **kwargs)
-    
-    def open(self, *args, **kwargs):
-        return self._cobj.open(*args, **kwargs)
 
-    def remove(self, *args, **kwargs):
-        return self._cobj.remove(*args, **kwargs)
+    def db_home(self, *args, **kwargs):
+        return self._cobj.db_home(*args, **kwargs)
 
-    def set_shm_key(self, *args, **kwargs):
-        return self._cobj.set_shm_key(*args, **kwargs)
+    def dbremove(self, *args, **kwargs):
+        return self._cobj.dbremove(*args, **kwargs)
 
-    def set_cachesize(self, *args, **kwargs):
-        return self._cobj.set_cachesize(*args, **kwargs)
+    def dbrename(self, *args, **kwargs):
+        return self._cobj.dbrename(*args, **kwargs)
 
-    def set_data_dir(self, *args, **kwargs):
-        return self._cobj.set_data_dir(*args, **kwargs)
+    def fileid_reset(self, *args, **kwargs):
+        return self._cobj.fileid_reset(*args, **kwargs)
 
-    def set_flags(self, *args, **kwargs):
-        return self._cobj.set_flags(*args, **kwargs)
+    def get_cache_max(self, *args, **kwargs):
+        return self._cobj.get_cache_max(*args, **kwargs)
 
-    def set_lg_bsize(self, *args, **kwargs):
-        return self._cobj.set_lg_bsize(*args, **kwargs)
+    def get_cachesize(self, *args, **kwargs):
+        return self._cobj.get_cachesize(*args, **kwargs)
 
-    def set_lg_dir(self, *args, **kwargs):
-        return self._cobj.set_lg_dir(*args, **kwargs)
+    def get_data_dirs(self, *args, **kwargs):
+        return self._cobj.get_data_dirs(*args, **kwargs)
 
-    def set_lg_max(self, *args, **kwargs):
-        return self._cobj.set_lg_max(*args, **kwargs)
+    def get_encrypt_flags(self, *args, **kwargs):
+        return self._cobj.get_encrypt_flags(*args, **kwargs)
 
-    def set_lk_detect(self, *args, **kwargs):
-        return self._cobj.set_lk_detect(*args, **kwargs)
+    def get_flags(self, *args, **kwargs):
+        return self._cobj.get_flags(*args, **kwargs)
 
-    def set_lk_max_locks(self, *args, **kwargs):
-        return self._cobj.set_lk_max_locks(*args, **kwargs)
+    def get_intermediate_dir_mode(self, *args, **kwargs):
+        return self._cobj.get_intermediate_dir_mode(*args, **kwargs)
 
-    def set_lk_max_lockers(self, *args, **kwargs):
-        return self._cobj.set_lk_max_lockers(*args, **kwargs)
+    def get_lg_bsize(self, *args, **kwargs):
+        return self._cobj.get_lg_bsize(*args, **kwargs)
 
-    def set_lk_max_objects(self, *args, **kwargs):
-        return self._cobj.set_lk_max_objects(*args, **kwargs)
+    def get_lg_dir(self, *args, **kwargs):
+        return self._cobj.get_lg_dir(*args, **kwargs)
 
-    def set_mp_mmapsize(self, *args, **kwargs):
-        return self._cobj.set_mp_mmapsize(*args, **kwargs)
+    def get_lg_filemode(self, *args, **kwargs):
+        return self._cobj.get_lg_filemode(*args, **kwargs)
 
-    def set_timeout(self, *args, **kwargs):
-        return self._cobj.set_timeout(*args, **kwargs)
+    def get_lg_max(self, *args, **kwargs):
+        return self._cobj.get_lg_max(*args, **kwargs)
 
-    def set_tmp_dir(self, *args, **kwargs):
-        return self._cobj.set_tmp_dir(*args, **kwargs)
+    def get_lg_regionmax(self, *args, **kwargs):
+        return self._cobj.get_lg_regionmax(*args, **kwargs)
 
-    def txn_begin(self, *args, **kwargs):
-        return self._cobj.txn_begin(*args, **kwargs)
+    def get_lk_detect(self, *args, **kwargs):
+        return self._cobj.get_lk_detect(*args, **kwargs)
 
-    def txn_checkpoint(self, *args, **kwargs):
-        return self._cobj.txn_checkpoint(*args, **kwargs)
+    def get_lk_max_lockers(self, *args, **kwargs):
+        return self._cobj.get_lk_max_lockers(*args, **kwargs)
 
-    def txn_stat(self, *args, **kwargs):
-        return self._cobj.txn_stat(*args, **kwargs)
+    def get_lk_max_locks(self, *args, **kwargs):
+        return self._cobj.get_lk_max_locks(*args, **kwargs)
 
-    def set_tx_max(self, *args, **kwargs):
-        return self._cobj.set_tx_max(*args, **kwargs)
+    def get_lk_max_objects(self, *args, **kwargs):
+        return self._cobj.get_lk_max_objects(*args, **kwargs)
 
-    def set_tx_timestamp(self, *args, **kwargs):
-        return self._cobj.set_tx_timestamp(*args, **kwargs)
+    def get_lk_partitions(self, *args, **kwargs):
+        return self._cobj.get_lk_partitions(*args, **kwargs)
+
+    def get_mp_max_openfd(self, *args, **kwargs):
+        return self._cobj.get_mp_max_openfd(*args, **kwargs)
+
+    def get_mp_max_write(self, *args, **kwargs):
+        return self._cobj.get_mp_max_write(*args, **kwargs)
+
+    def get_mp_mmapsize(self, *args, **kwargs):
+        return self._cobj.get_mp_mmapsize(*args, **kwargs)
+
+    def get_open_flags(self, *args, **kwargs):
+        return self._cobj.get_open_flags(*args, **kwargs)
+
+    def get_private(self, *args, **kwargs):
+        return self._cobj.get_private(*args, **kwargs)
+
+    def get_shm_key(self, *args, **kwargs):
+        return self._cobj.get_shm_key(*args, **kwargs)
+
+    def get_thread_count(self, *args, **kwargs):
+        return self._cobj.get_thread_count(*args, **kwargs)
+
+    def get_timeout(self, *args, **kwargs):
+        return self._cobj.get_timeout(*args, **kwargs)
+
+    def get_tmp_dir(self, *args, **kwargs):
+        return self._cobj.get_tmp_dir(*args, **kwargs)
+
+    def get_tx_max(self, *args, **kwargs):
+        return self._cobj.get_tx_max(*args, **kwargs)
+
+    def get_tx_timestamp(self, *args, **kwargs):
+        return self._cobj.get_tx_timestamp(*args, **kwargs)
+
+    def get_verbose(self, *args, **kwargs):
+        return self._cobj.get_verbose(*args, **kwargs)
 
     def lock_detect(self, *args, **kwargs):
         return self._cobj.lock_detect(*args, **kwargs)
@@ -98,32 +131,287 @@ class DbEnv(object):
     def lock_id(self, *args, **kwargs):
         return self._cobj.lock_id(*args, **kwargs)
 
+    def lock_id_free(self, *args, **kwargs):
+        return self._cobj.lock_id_free(*args, **kwargs)
+
     def lock_put(self, *args, **kwargs):
         return self._cobj.lock_put(*args, **kwargs)
 
     def lock_stat(self, *args, **kwargs):
         return self._cobj.lock_stat(*args, **kwargs)
 
+    def lock_stat_print(self, *args, **kwargs):
+        return self._cobj.lock_stat_print(*args, **kwargs)
+
     def log_archive(self, *args, **kwargs):
         return self._cobj.log_archive(*args, **kwargs)
+
+    def log_cursor(self, *args, **kwargs):
+        return self._cobj.log_cursor(*args, **kwargs)
+
+    def log_file(self, *args, **kwargs):
+        return self._cobj.log_file(*args, **kwargs)
+
+    def log_flush(self, *args, **kwargs):
+        return self._cobj.log_flush(*args, **kwargs)
+
+    def log_get_config(self, *args, **kwargs):
+        return self._cobj.log_get_config(*args, **kwargs)
+
+    def log_printf(self, *args, **kwargs):
+        return self._cobj.log_printf(*args, **kwargs)
+
+    def log_set_config(self, *args, **kwargs):
+        return self._cobj.log_set_config(*args, **kwargs)
 
     def log_stat(self, *args, **kwargs):
         return self._cobj.log_stat(*args, **kwargs)
 
-    def dbremove(self, *args, **kwargs):
-        return self._cobj.dbremove(*args, **kwargs)
+    def log_stat_print(self, *args, **kwargs):
+        return self._cobj.log_stat_print(*args, **kwargs)
 
-    def dbrename(self, *args, **kwargs):
-        return self._cobj.dbrename(*args, **kwargs)
+    def lsn_reset(self, *args, **kwargs):
+        return self._cobj.lsn_reset(*args, **kwargs)
+
+    def memp_stat(self, *args, **kwargs):
+        return self._cobj.memp_stat(*args, **kwargs)
+
+    def memp_stat_print(self, *args, **kwargs):
+        return self._cobj.memp_stat_print(*args, **kwargs)
+
+    def memp_sync(self, *args, **kwargs):
+        return self._cobj.memp_sync(*args, **kwargs)
+
+    def memp_trickle(self, *args, **kwargs):
+        return self._cobj.memp_trickle(*args, **kwargs)
+
+    def mutex_get_align(self, *args, **kwargs):
+        return self._cobj.mutex_get_align(*args, **kwargs)
+
+    def mutex_get_increment(self, *args, **kwargs):
+        return self._cobj.mutex_get_increment(*args, **kwargs)
+
+    def mutex_get_max(self, *args, **kwargs):
+        return self._cobj.mutex_get_max(*args, **kwargs)
+
+    def mutex_get_tas_spins(self, *args, **kwargs):
+        return self._cobj.mutex_get_tas_spins(*args, **kwargs)
+
+    def mutex_set_align(self, *args, **kwargs):
+        return self._cobj.mutex_set_align(*args, **kwargs)
+
+    def mutex_set_increment(self, *args, **kwargs):
+        return self._cobj.mutex_set_increment(*args, **kwargs)
+
+    def mutex_set_max(self, *args, **kwargs):
+        return self._cobj.mutex_set_max(*args, **kwargs)
+
+    def mutex_set_tas_spins(self, *args, **kwargs):
+        return self._cobj.mutex_set_tas_spins(*args, **kwargs)
+
+    def mutex_stat(self, *args, **kwargs):
+        return self._cobj.mutex_stat(*args, **kwargs)
+
+    def mutex_stat_print(self, *args, **kwargs):
+        return self._cobj.mutex_stat_print(*args, **kwargs)
+
+    def open(self, *args, **kwargs):
+        return self._cobj.open(*args, **kwargs)
+
+    def remove(self, *args, **kwargs):
+        return self._cobj.remove(*args, **kwargs)
+
+    def rep_elect(self, *args, **kwargs):
+        return self._cobj.rep_elect(*args, **kwargs)
+
+    def rep_get_clockskew(self, *args, **kwargs):
+        return self._cobj.rep_get_clockskew(*args, **kwargs)
+
+    def rep_get_config(self, *args, **kwargs):
+        return self._cobj.rep_get_config(*args, **kwargs)
+
+    def rep_get_limit(self, *args, **kwargs):
+        return self._cobj.rep_get_limit(*args, **kwargs)
+
+    def rep_get_nsites(self, *args, **kwargs):
+        return self._cobj.rep_get_nsites(*args, **kwargs)
+
+    def rep_get_priority(self, *args, **kwargs):
+        return self._cobj.rep_get_priority(*args, **kwargs)
+
+    def rep_get_request(self, *args, **kwargs):
+        return self._cobj.rep_get_request(*args, **kwargs)
+
+    def rep_get_timeout(self, *args, **kwargs):
+        return self._cobj.rep_get_timeout(*args, **kwargs)
+
+    def rep_process_message(self, *args, **kwargs):
+        return self._cobj.rep_process_message(*args, **kwargs)
+
+    def rep_set_clockskew(self, *args, **kwargs):
+        return self._cobj.rep_set_clockskew(*args, **kwargs)
+
+    def rep_set_config(self, *args, **kwargs):
+        return self._cobj.rep_set_config(*args, **kwargs)
+
+    def rep_set_limit(self, *args, **kwargs):
+        return self._cobj.rep_set_limit(*args, **kwargs)
+
+    def rep_set_nsites(self, *args, **kwargs):
+        return self._cobj.rep_set_nsites(*args, **kwargs)
+
+    def rep_set_priority(self, *args, **kwargs):
+        return self._cobj.rep_set_priority(*args, **kwargs)
+
+    def rep_set_request(self, *args, **kwargs):
+        return self._cobj.rep_set_request(*args, **kwargs)
+
+    def rep_set_timeout(self, *args, **kwargs):
+        return self._cobj.rep_set_timeout(*args, **kwargs)
+
+    def rep_set_transport(self, *args, **kwargs):
+        return self._cobj.rep_set_transport(*args, **kwargs)
+
+    def rep_start(self, *args, **kwargs):
+        return self._cobj.rep_start(*args, **kwargs)
+
+    def rep_stat(self, *args, **kwargs):
+        return self._cobj.rep_stat(*args, **kwargs)
+
+    def rep_stat_print(self, *args, **kwargs):
+        return self._cobj.rep_stat_print(*args, **kwargs)
+
+    def rep_sync(self, *args, **kwargs):
+        return self._cobj.rep_sync(*args, **kwargs)
+
+    def repmgr_get_ack_policy(self, *args, **kwargs):
+        return self._cobj.repmgr_get_ack_policy(*args, **kwargs)
+
+    def repmgr_set_ack_policy(self, *args, **kwargs):
+        return self._cobj.repmgr_set_ack_policy(*args, **kwargs)
+
+    def repmgr_site(self, *args, **kwargs):
+        return self._cobj.repmgr_site(*args, **kwargs)
+
+    def repmgr_site_by_eid(self, *args, **kwargs):
+        return self._cobj.repmgr_site_by_eid(*args, **kwargs)
+
+    def repmgr_site_list(self, *args, **kwargs):
+        return self._cobj.repmgr_site_list(*args, **kwargs)
+
+    def repmgr_start(self, *args, **kwargs):
+        return self._cobj.repmgr_start(*args, **kwargs)
+
+    def repmgr_stat(self, *args, **kwargs):
+        return self._cobj.repmgr_stat(*args, **kwargs)
+
+    def repmgr_stat_print(self, *args, **kwargs):
+        return self._cobj.repmgr_stat_print(*args, **kwargs)
+
+    def set_cache_max(self, *args, **kwargs):
+        return self._cobj.set_cache_max(*args, **kwargs)
+
+    def set_cachesize(self, *args, **kwargs):
+        return self._cobj.set_cachesize(*args, **kwargs)
+
+    def set_data_dir(self, *args, **kwargs):
+        return self._cobj.set_data_dir(*args, **kwargs)
 
     def set_encrypt(self, *args, **kwargs):
         return self._cobj.set_encrypt(*args, **kwargs)
 
-    def fileid_reset(self, *args, **kwargs):
-        return self._cobj.fileid_reset(*args, **kwargs)
+    def set_event_notify(self, *args, **kwargs):
+        return self._cobj.set_event_notify(*args, **kwargs)
 
-    def lsn_reset(self, *args, **kwargs):
-        return self._cobj.lsn_reset(*args, **kwargs)
+    def set_flags(self, *args, **kwargs):
+        return self._cobj.set_flags(*args, **kwargs)
+
+    def set_get_returns_none(self, *args, **kwargs):
+        return self._cobj.set_get_returns_none(*args, **kwargs)
+
+    def set_intermediate_dir_mode(self, *args, **kwargs):
+        return self._cobj.set_intermediate_dir_mode(*args, **kwargs)
+
+    def set_lg_bsize(self, *args, **kwargs):
+        return self._cobj.set_lg_bsize(*args, **kwargs)
+
+    def set_lg_dir(self, *args, **kwargs):
+        return self._cobj.set_lg_dir(*args, **kwargs)
+
+    def set_lg_filemode(self, *args, **kwargs):
+        return self._cobj.set_lg_filemode(*args, **kwargs)
+
+    def set_lg_max(self, *args, **kwargs):
+        return self._cobj.set_lg_max(*args, **kwargs)
+
+    def set_lg_regionmax(self, *args, **kwargs):
+        return self._cobj.set_lg_regionmax(*args, **kwargs)
+
+    def set_lk_detect(self, *args, **kwargs):
+        return self._cobj.set_lk_detect(*args, **kwargs)
+
+    def set_lk_max_lockers(self, *args, **kwargs):
+        return self._cobj.set_lk_max_lockers(*args, **kwargs)
+
+    def set_lk_max_locks(self, *args, **kwargs):
+        return self._cobj.set_lk_max_locks(*args, **kwargs)
+
+    def set_lk_max_objects(self, *args, **kwargs):
+        return self._cobj.set_lk_max_objects(*args, **kwargs)
+
+    def set_lk_partitions(self, *args, **kwargs):
+        return self._cobj.set_lk_partitions(*args, **kwargs)
+
+    def set_mp_max_openfd(self, *args, **kwargs):
+        return self._cobj.set_mp_max_openfd(*args, **kwargs)
+
+    def set_mp_max_write(self, *args, **kwargs):
+        return self._cobj.set_mp_max_write(*args, **kwargs)
+
+    def set_mp_mmapsize(self, *args, **kwargs):
+        return self._cobj.set_mp_mmapsize(*args, **kwargs)
+
+    def set_private(self, *args, **kwargs):
+        return self._cobj.set_private(*args, **kwargs)
+
+    def set_shm_key(self, *args, **kwargs):
+        return self._cobj.set_shm_key(*args, **kwargs)
+
+    def set_thread_count(self, *args, **kwargs):
+        return self._cobj.set_thread_count(*args, **kwargs)
+
+    def set_timeout(self, *args, **kwargs):
+        return self._cobj.set_timeout(*args, **kwargs)
+
+    def set_tmp_dir(self, *args, **kwargs):
+        return self._cobj.set_tmp_dir(*args, **kwargs)
+
+    def set_tx_max(self, *args, **kwargs):
+        return self._cobj.set_tx_max(*args, **kwargs)
+
+    def set_tx_timestamp(self, *args, **kwargs):
+        return self._cobj.set_tx_timestamp(*args, **kwargs)
+
+    def set_verbose(self, *args, **kwargs):
+        return self._cobj.set_verbose(*args, **kwargs)
+
+    def stat_print(self, *args, **kwargs):
+        return self._cobj.stat_print(*args, **kwargs)
+
+    def txn_begin(self, *args, **kwargs):
+        return self._cobj.txn_begin(*args, **kwargs)
+
+    def txn_checkpoint(self, *args, **kwargs):
+        return self._cobj.txn_checkpoint(*args, **kwargs)
+
+    def txn_recover(self, *args, **kwargs):
+        return self._cobj.txn_recover(*args, **kwargs)
+
+    def txn_stat(self, *args, **kwargs):
+        return self._cobj.txn_stat(*args, **kwargs)
+
+    def txn_stat_print(self, *args, **kwargs):
+        return self._cobj.txn_stat_print(*args, **kwargs)
 
 
 class Db(object):
