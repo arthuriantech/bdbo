@@ -413,6 +413,18 @@ class DbEnv(object):
     def txn_begin(self, *args, **kwargs):
         return self._cobj.txn_begin(*args, **kwargs)
 
+    @contextlib.contextmanager
+    def txn_begin_ctx(self, *args, **kwargs):
+        txn = self._cobj.txn_begin(*args, **kwargs)
+
+        try:
+            yield txn
+        except:
+            txn.abort()
+            raise
+        else:
+            txn.commit()
+
     def txn_checkpoint(self, *args, **kwargs):
         return self._cobj.txn_checkpoint(*args, **kwargs)
 
